@@ -54,6 +54,18 @@ void viewNode(Node *n){
     cout << n->next->data.get_name()<< endl << endl;
 }
 
+void remaingsize(Node *n){
+    cout << "Here is size of the rest of the list: ";
+    int i = 0;
+    n = n->next;
+    while(n != NULL){
+        n = n->next;
+        ++i;
+    }
+
+    cout << i << "\n\n";
+}
+
 
 int main(){
     ChainLink link_one = ChainLink("red", "link1");
@@ -63,7 +75,11 @@ int main(){
     Node *node_two = new Node(link_two);
     addNode(&node_one, node_two);
 
+    ChainLink link_three = ChainLink("green", "link3");
+    Node *node_three = new Node(link_three);
+    addNode(&node_two, node_three);
 
+    remaingsize(node_one);
 
     print(node_one);
     print(node_one);
