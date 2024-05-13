@@ -34,6 +34,10 @@ void print(Node * n){
     cout << "\n\n";
 }
 
+void push(Node ** npointer, Node *new_node){
+    new_node->next = (*npointer);
+}
+
 void addNode(Node ** npointer, Node *new_node){
     // Node *new_node = new Node();    //creates the new node
     Node * last = *npointer;
@@ -51,7 +55,13 @@ void viewNode(Node *n){
     cout << "Here is the info of the current node: \n";
     cout << "Chain link color: " << n->data.get_color();
     cout << "\nNext node: ";
-    cout << n->next->data.get_name()<< endl << endl;
+
+    if(n->next == NULL){
+        cout << "NULL\n\n";
+    }
+    else{
+        cout << n->next->data.get_name()<< endl << endl;
+    }
 }
 
 void remaingsize(Node *n){
@@ -68,6 +78,7 @@ void remaingsize(Node *n){
 
 
 int main(){
+    
     ChainLink link_one = ChainLink("red", "link1");
     Node *node_one = new Node(link_one);
 
@@ -77,14 +88,19 @@ int main(){
 
     ChainLink link_three = ChainLink("green", "link3");
     Node *node_three = new Node(link_three);
-    addNode(&node_two, node_three);
+    addNode(&node_one, node_three);
 
     remaingsize(node_one);
 
     print(node_one);
-    print(node_one);
 
-    viewNode(node_one);
+    viewNode(node_three);
+
+    ChainLink link_four = ChainLink("black", "link4");
+    Node *node_four = new Node(link_four);
+    push(&node_one, node_four);
+
+    print(node_four);
 
     return 0;
 }
